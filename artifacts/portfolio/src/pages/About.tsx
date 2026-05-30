@@ -1,0 +1,182 @@
+import React from "react";
+import { Link } from "wouter";
+import { 
+  Breadcrumb, 
+  BreadcrumbItem, 
+  BreadcrumbLink, 
+  BreadcrumbList, 
+  BreadcrumbPage, 
+  BreadcrumbSeparator 
+} from "@/components/ui/breadcrumb";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
+import { ChevronDown, Info } from "lucide-react";
+import profilePhoto from "@assets/IMG_6720_1780111869102.jpeg";
+
+export default function About() {
+  return (
+    <div className="space-y-8 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">Home</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>About</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <div>
+        <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">About Me</h1>
+        <p className="text-muted-foreground text-lg max-w-2xl">
+          A passionate and highly motivated high school student focusing on civic engagement, human rights advocacy, and strategic youth leadership.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="col-span-1">
+          <div className="glass-card p-4 rounded-2xl sticky top-24">
+            <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
+              <img src={profilePhoto} alt="Naitik Maheshwari" className="object-cover w-full h-full" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+            </div>
+            <h3 className="font-bold text-xl mb-1">Naitik Maheshwari</h3>
+            <p className="text-primary text-sm font-medium mb-4">Marietta, Georgia</p>
+            
+            <div className="flex flex-wrap gap-2 mb-4">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge variant="secondary" className="cursor-help">Civic Leader</Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Engaged in local government initiatives</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge variant="secondary" className="cursor-help">Public Speaker</Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>State & District level award winner</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-span-1 md:col-span-2">
+          <Tabs defaultValue="background" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 bg-white/5 border border-white/10 p-1 rounded-xl mb-8">
+              <TabsTrigger value="background" className="rounded-lg data-[state=active]:bg-primary/20 data-[state=active]:text-white">Background</TabsTrigger>
+              <TabsTrigger value="education" className="rounded-lg data-[state=active]:bg-secondary/20 data-[state=active]:text-white">Education</TabsTrigger>
+              <TabsTrigger value="personal" className="rounded-lg data-[state=active]:bg-accent/20 data-[state=active]:text-white">Personal</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="background" className="space-y-6 animate-in fade-in zoom-in-95 duration-500">
+              <div className="glass-card p-6 md:p-8 rounded-2xl">
+                <h3 className="text-2xl font-display font-semibold mb-4">My Story</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  I am a passionate and highly motivated high school student seeking to apply my interests and background knowledge to opportunities in the social studies field. My focus lies at the intersection of civic engagement, human rights advocacy, and strategic youth leadership.
+                </p>
+                <Separator className="bg-white/10 my-6" />
+                <h4 className="text-lg font-semibold mb-4 text-white">Key Facts</h4>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <span>Serving as Cobb County Youth Commissioner</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                    <span>Georgia 4-H Northwest District Board of Director</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span>Award-winning public speaker on human rights</span>
+                  </li>
+                </ul>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="education" className="space-y-6 animate-in fade-in zoom-in-95 duration-500">
+              <div className="glass-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start">
+                <div className="w-24 h-24 bg-white rounded-xl p-2 shrink-0 flex items-center justify-center border-4 border-white/10">
+                  <img src="/wheeler-logo.png" alt="Wheeler High School" className="max-w-full max-h-full" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-display font-semibold mb-1">Wheeler High School</h3>
+                  <p className="text-primary font-medium mb-4">Class of 2028</p>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Current GPA</p>
+                      <HoverCard>
+                        <HoverCardTrigger asChild>
+                          <div className="flex items-center gap-2 cursor-help">
+                            <span className="text-3xl font-display font-bold text-white">4.3</span>
+                            <Info className="w-4 h-4 text-muted-foreground" />
+                          </div>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="w-80 glass-card border-white/10" side="top">
+                          <div className="space-y-2">
+                            <h4 className="font-medium text-sm text-white">Weighted GPA</h4>
+                            <p className="text-xs text-muted-foreground">Includes Honors and AP course weighting reflecting a rigorous academic courseload.</p>
+                          </div>
+                        </HoverCardContent>
+                      </HoverCard>
+                    </div>
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Honors</p>
+                      <p className="text-sm font-medium text-white mb-1">Academic Letter</p>
+                      <p className="text-xs text-muted-foreground">Recognition in Advanced Courses</p>
+                    </div>
+                  </div>
+
+                  <Collapsible className="border border-white/10 rounded-xl overflow-hidden bg-white/5">
+                    <CollapsibleTrigger className="flex items-center justify-between w-full p-4 font-medium hover:bg-white/5 transition-colors">
+                      More About Wheeler STEM Magnet
+                      <ChevronDown className="w-4 h-4" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="p-4 pt-0 text-sm text-muted-foreground border-t border-white/10 bg-black/20">
+                      The Center of Advanced Studies in Science, Technology, and Math (STEM Magnet) program provides rigorous, college-level coursework and hands-on research opportunities for highly motivated students.
+                    </CollapsibleContent>
+                  </Collapsible>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="personal" className="space-y-6 animate-in fade-in zoom-in-95 duration-500">
+              <div className="glass-card p-6 md:p-8 rounded-2xl">
+                <h3 className="text-2xl font-display font-semibold mb-6">Beyond Academics</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Core Interests</h4>
+                    <div className="flex flex-col gap-2">
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">International Relations</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Policy Debate</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Community Organizing</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Youth Advocacy</div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <h4 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Future Goals</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      To pursue a career in public policy or international law, leveraging research and advocacy to address systemic human rights issues on a broader scale.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
+    </div>
+  );
+}
