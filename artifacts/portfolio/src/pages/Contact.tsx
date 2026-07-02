@@ -51,7 +51,6 @@ export default function Contact() {
   });
 
   const onSubmit = (data: FormValues) => {
-    // Simulate API call
     setTimeout(() => {
       toast.success("Message sent successfully!", {
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -83,7 +82,7 @@ export default function Contact() {
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
         <div>
-          <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">Get In Touch</h1>
+          <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-foreground">Get In Touch</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">
             Open to discussions regarding civic initiatives, public speaking engagements, and collaborative projects.
           </p>
@@ -91,13 +90,13 @@ export default function Contact() {
         
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="shadow-glow rounded-full">
+            <Button className="rounded-full">
               <MessageSquare className="w-4 h-4 mr-2" /> Quick Contact
             </Button>
           </SheetTrigger>
-          <SheetContent className="glass-panel border-white/10 sm:max-w-md">
+          <SheetContent className="glass-panel border-border sm:max-w-md">
             <SheetHeader className="mb-6">
-              <SheetTitle className="text-2xl font-display uppercase tracking-tight text-white">Quick Message</SheetTitle>
+              <SheetTitle className="text-2xl font-display uppercase tracking-tight text-foreground">Quick Message</SheetTitle>
               <SheetDescription>Send a brief message directly from here.</SheetDescription>
             </SheetHeader>
             <Form {...form}>
@@ -109,7 +108,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="your@email.com" className="bg-black/20 border-white/10 focus-visible:ring-primary" {...field} />
+                        <Input placeholder="your@email.com" className="bg-muted border-border focus-visible:ring-primary" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -122,7 +121,7 @@ export default function Contact() {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="How can I help you?" className="min-h-[120px] bg-black/20 border-white/10 focus-visible:ring-primary" {...field} />
+                        <Textarea placeholder="How can I help you?" className="min-h-[120px] bg-muted border-border focus-visible:ring-primary" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -140,7 +139,7 @@ export default function Contact() {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         <div className="lg:col-span-3">
-          <Card className="glass-card border-white/10">
+          <Card className="glass-card border-border">
             <CardContent className="p-6 sm:p-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -152,7 +151,7 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel className="text-muted-foreground uppercase tracking-wider text-xs">Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" className="bg-white/5 border-white/10 h-12 focus-visible:ring-primary" {...field} />
+                            <Input placeholder="John Doe" className="bg-muted border-border h-12 focus-visible:ring-primary" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -165,7 +164,7 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel className="text-muted-foreground uppercase tracking-wider text-xs">Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="john@example.com" className="bg-white/5 border-white/10 h-12 focus-visible:ring-primary" {...field} />
+                            <Input placeholder="john@example.com" className="bg-muted border-border h-12 focus-visible:ring-primary" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -179,7 +178,7 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel className="text-muted-foreground uppercase tracking-wider text-xs">Subject</FormLabel>
                         <FormControl>
-                          <Input placeholder="Project Inquiry" className="bg-white/5 border-white/10 h-12 focus-visible:ring-primary" {...field} />
+                          <Input placeholder="Project Inquiry" className="bg-muted border-border h-12 focus-visible:ring-primary" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -192,7 +191,7 @@ export default function Contact() {
                       <FormItem>
                         <FormLabel className="text-muted-foreground uppercase tracking-wider text-xs">Message</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Describe your inquiry in detail..." className="min-h-[150px] bg-white/5 border-white/10 resize-y focus-visible:ring-primary" {...field} />
+                          <Textarea placeholder="Describe your inquiry in detail..." className="min-h-[150px] bg-muted border-border resize-y focus-visible:ring-primary" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -213,7 +212,7 @@ export default function Contact() {
         </div>
 
         <div className="lg:col-span-2 flex flex-col gap-4">
-          <Card className="glass-card border-white/10 hover:border-primary/50 transition-colors">
+          <Card className="glass-card border-border hover:border-primary/40 hover:shadow-md transition-all">
             <CardContent className="p-6 flex items-start gap-4">
               <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
                 <Mail className="w-6 h-6" />
@@ -223,11 +222,11 @@ export default function Contact() {
                 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="text-lg font-medium text-white truncate hover:text-primary transition-colors focus:outline-none w-full text-left">
+                    <button className="text-lg font-medium text-foreground truncate hover:text-primary transition-colors focus:outline-none w-full text-left">
                       naitikmaheshwari30@gmail.com
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="glass-panel border-white/10">
+                  <DropdownMenuContent align="start" className="glass-panel border-border">
                     <DropdownMenuItem onClick={() => copyToClipboard("naitikmaheshwari30@gmail.com", "Email")}>
                       <Copy className="w-4 h-4 mr-2" /> Copy to clipboard
                     </DropdownMenuItem>
@@ -245,16 +244,16 @@ export default function Contact() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-white/10 hover:border-secondary/50 transition-colors">
+          <Card className="glass-card border-border hover:border-primary/40 hover:shadow-md transition-all">
             <CardContent className="p-6 flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-secondary/10 text-secondary shrink-0">
+              <div className="p-3 rounded-xl bg-violet-100 text-violet-600 shrink-0">
                 <Phone className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1">Phone</h3>
                 <button 
                   onClick={() => copyToClipboard("404-388-3101", "Phone number")}
-                  className="text-lg font-medium text-white hover:text-secondary transition-colors focus:outline-none text-left block"
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors focus:outline-none text-left block"
                 >
                   404-388-3101
                 </button>
@@ -262,14 +261,14 @@ export default function Contact() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-white/10 hover:border-accent/50 transition-colors">
+          <Card className="glass-card border-border hover:border-primary/40 hover:shadow-md transition-all">
             <CardContent className="p-6 flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-accent/10 text-accent shrink-0">
+              <div className="p-3 rounded-xl bg-purple-100 text-purple-600 shrink-0">
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-1">Location</h3>
-                <p className="text-lg font-medium text-white">Marietta, GA 30066</p>
+                <p className="text-lg font-medium text-foreground">Marietta, GA 30066</p>
                 <p className="text-sm text-muted-foreground mt-1">Available for local and remote engagements</p>
               </div>
             </CardContent>
@@ -277,17 +276,17 @@ export default function Contact() {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" className="w-full mt-4 bg-white/5 border-white/10 hover:bg-white/10 h-14 rounded-xl">
+              <Button variant="outline" className="w-full mt-4 hover:bg-primary/5 hover:border-primary/40 h-14 rounded-xl">
                 <CalendarIcon className="w-5 h-5 mr-2 text-primary" /> Check Availability
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 glass-panel border-white/10" align="end">
+            <PopoverContent className="w-auto p-0 glass-panel border-border" align="end">
               <Calendar
                 mode="single"
                 className="rounded-md"
                 disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
               />
-              <div className="p-3 border-t border-white/10 text-xs text-center text-muted-foreground">
+              <div className="p-3 border-t border-border text-xs text-center text-muted-foreground">
                 Select a date to propose a meeting
               </div>
             </PopoverContent>

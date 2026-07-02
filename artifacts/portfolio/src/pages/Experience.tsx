@@ -31,7 +31,6 @@ const experiences = [
       { name: "Public Speaking", desc: "Representing the district at state events" }
     ],
     involvement: 95,
-    color: "secondary"
   },
   {
     id: "2",
@@ -46,7 +45,6 @@ const experiences = [
       { name: "Board Leadership", desc: "Coordinating SAB initiatives and meetings" }
     ],
     involvement: 90,
-    color: "primary"
   },
   {
     id: "3",
@@ -61,7 +59,6 @@ const experiences = [
       { name: "Public Speaking", desc: "Presenting to county commissioners and public" }
     ],
     involvement: 100,
-    color: "accent"
   },
   {
     id: "4",
@@ -76,7 +73,6 @@ const experiences = [
       { name: "Representation", desc: "Representing Cobb County at district and state level" }
     ],
     involvement: 90,
-    color: "secondary"
   },
   {
     id: "5",
@@ -91,7 +87,6 @@ const experiences = [
       { name: "Organizational Skills", desc: "Managing documentation and scheduling" }
     ],
     involvement: 80,
-    color: "primary"
   },
   {
     id: "6",
@@ -106,7 +101,6 @@ const experiences = [
       { name: "Community Building", desc: "Recruiting members and fostering inclusivity" }
     ],
     involvement: 85,
-    color: "accent"
   },
   {
     id: "7",
@@ -121,7 +115,6 @@ const experiences = [
       { name: "Environmental Stewardship", desc: "Promoting community environmental responsibility" }
     ],
     involvement: 75,
-    color: "secondary"
   },
   {
     id: "8",
@@ -136,7 +129,6 @@ const experiences = [
       { name: "Leadership", desc: "Holding a recognized officer role within the organization" }
     ],
     involvement: 75,
-    color: "primary"
   },
   {
     id: "9",
@@ -151,7 +143,6 @@ const experiences = [
       { name: "Strategic Outreach", desc: "Crafting messaging for a statewide audience" }
     ],
     involvement: 85,
-    color: "accent"
   }
 ];
 
@@ -168,7 +159,6 @@ const projects = [
       { name: "Systems Thinking", desc: "Modeling resource allocation and cost-benefit analysis" },
       { name: "CivicTech", desc: "Applying technology to local government challenges" }
     ],
-    color: "primary"
   },
   {
     id: "p2",
@@ -181,7 +171,6 @@ const projects = [
       { name: "Framework Design", desc: "Architecting the Adversarial Partner model" },
       { name: "Critical Thinking", desc: "Investigating cognitive effects of AI reliance" }
     ],
-    color: "secondary"
   },
   {
     id: "p3",
@@ -194,7 +183,6 @@ const projects = [
       { name: "Public Speaking", desc: "Award-winning competitive presentation" },
       { name: "Global Awareness", desc: "Understanding geopolitical human rights contexts" }
     ],
-    color: "accent"
   },
   {
     id: "p4",
@@ -207,7 +195,6 @@ const projects = [
       { name: "Data Analysis", desc: "Interpreting UV-based germ spread results" },
       { name: "Scientific Writing", desc: "Documenting methodology and findings" }
     ],
-    color: "primary"
   },
   {
     id: "p5",
@@ -220,7 +207,6 @@ const projects = [
       { name: "Rational Decision-Making", desc: "Defending judgments before expert panels" },
       { name: "Team Collaboration", desc: "Competing as part of a high-performing state team" }
     ],
-    color: "secondary"
   }
 ];
 
@@ -244,19 +230,19 @@ export default function Experience() {
       </Breadcrumb>
 
       <div>
-        <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">Experience</h1>
+        <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-foreground">Experience</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
           Roles and projects focused on civic leadership, government service, community building, and AI-driven research.
         </p>
       </div>
 
       <Tabs defaultValue="all" className="w-full">
-        <TabsList className="mb-8 bg-white/5 border border-white/10 rounded-xl p-1 flex flex-wrap h-auto">
-          <TabsTrigger value="all" className="rounded-lg flex-1">All Roles</TabsTrigger>
-          <TabsTrigger value="Leadership" className="rounded-lg flex-1">Leadership</TabsTrigger>
-          <TabsTrigger value="Government" className="rounded-lg flex-1">Government</TabsTrigger>
-          <TabsTrigger value="Community" className="rounded-lg flex-1">Community</TabsTrigger>
-          <TabsTrigger value="Projects" className="rounded-lg flex-1">Projects</TabsTrigger>
+        <TabsList className="mb-8 bg-muted border border-border rounded-xl p-1 flex flex-wrap h-auto">
+          <TabsTrigger value="all" className="rounded-lg flex-1 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">All Roles</TabsTrigger>
+          <TabsTrigger value="Leadership" className="rounded-lg flex-1 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Leadership</TabsTrigger>
+          <TabsTrigger value="Government" className="rounded-lg flex-1 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Government</TabsTrigger>
+          <TabsTrigger value="Community" className="rounded-lg flex-1 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Community</TabsTrigger>
+          <TabsTrigger value="Projects" className="rounded-lg flex-1 data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Projects</TabsTrigger>
         </TabsList>
 
         {tabCategories.map(tab => (
@@ -264,24 +250,24 @@ export default function Experience() {
             {tab === "Projects" ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {projects.map((project) => (
-                  <Card key={project.id} className="glass-card border-white/10 overflow-hidden">
+                  <Card key={project.id} className="glass-card overflow-hidden hover:shadow-md hover:border-primary/30 transition-all">
                     <CardHeader className="pb-3">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                        <Badge variant="outline" className="bg-white/5 border-white/10 text-xs">{project.type}</Badge>
+                        <Badge variant="outline" className="bg-primary/5 border-primary/20 text-primary text-xs">{project.type}</Badge>
                       </div>
-                      <CardTitle className="text-xl leading-tight text-white">{project.title}</CardTitle>
-                      <p className={`text-sm font-medium text-${project.color}`}>{project.role}</p>
+                      <CardTitle className="text-xl leading-tight text-foreground">{project.title}</CardTitle>
+                      <p className="text-sm font-medium text-primary">{project.role}</p>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
-                      <Separator className="bg-white/10" />
+                      <Separator className="bg-border" />
                       <div className="space-y-2">
                         <h4 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Applied Skills</h4>
                         <div className="flex flex-wrap gap-2">
                           {project.skills.map((skill, idx) => (
                             <Tooltip key={idx}>
                               <TooltipTrigger asChild>
-                                <Badge className="bg-black/40 hover:bg-white/10 text-white/80 border border-white/10 cursor-help transition-colors">
+                                <Badge className="bg-muted hover:bg-primary/10 text-foreground border border-border cursor-help transition-colors">
                                   {skill.name}
                                 </Badge>
                               </TooltipTrigger>
@@ -298,13 +284,13 @@ export default function Experience() {
               </div>
             ) : (
               <div className="flex flex-col lg:flex-row gap-10">
-                <div className="hidden lg:block w-8 border-r-2 border-white/10 relative mt-6 shrink-0">
+                <div className="hidden lg:block w-8 border-r-2 border-border relative mt-6 shrink-0">
                   {experiences
                     .filter(exp => tab === "all" || exp.type === tab)
                     .map((exp, i) => (
-                    <div 
-                      key={exp.id} 
-                      className={`absolute w-4 h-4 rounded-full -right-[9px] border-4 border-background bg-${exp.color}`}
+                    <div
+                      key={exp.id}
+                      className="absolute w-4 h-4 rounded-full -right-[9px] border-4 border-white bg-primary"
                       style={{ top: `${(i * 180) + 40}px` }}
                     />
                   ))}
@@ -315,24 +301,24 @@ export default function Experience() {
                     {experiences
                       .filter(exp => tab === "all" || exp.type === tab)
                       .map((exp) => (
-                      <AccordionItem key={exp.id} value={exp.id} className="glass-card border-white/10 rounded-2xl overflow-hidden border-b-0 px-2">
+                      <AccordionItem key={exp.id} value={exp.id} className="glass-card border-border rounded-2xl overflow-hidden border-b-0 px-2 hover:border-primary/30 transition-colors">
                         <AccordionTrigger className="hover:no-underline px-4 py-6">
                           <div className="flex flex-col md:flex-row md:items-center text-left gap-2 w-full pr-4">
                             <div className="flex-1">
-                              <h3 className="text-xl font-bold text-white mb-0.5">{exp.role}</h3>
-                              <p className={`text-sm font-semibold text-${exp.color} mb-1`}>{exp.title}</p>
+                              <h3 className="text-xl font-bold text-foreground mb-0.5">{exp.role}</h3>
+                              <p className="text-sm font-semibold text-primary mb-1">{exp.title}</p>
                               <p className="text-xs text-muted-foreground">{exp.date}</p>
                             </div>
-                            <Badge variant="outline" className="w-fit bg-white/5 border-white/10">{exp.type}</Badge>
+                            <Badge variant="outline" className="w-fit bg-primary/5 border-primary/20 text-primary">{exp.type}</Badge>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="px-4 pb-6 pt-0 text-muted-foreground">
-                          <Card className="bg-white/5 border-white/5 shadow-inner">
+                          <Card className="bg-muted/50 border-border shadow-inner">
                             <CardHeader className="pb-3">
                               <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">Overview</CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-6 pb-4">
-                              <p className="text-base text-white/90 leading-relaxed">
+                              <p className="text-base text-foreground leading-relaxed">
                                 {exp.description}
                               </p>
                               
@@ -341,18 +327,18 @@ export default function Experience() {
                                   <span>Involvement Level</span>
                                   <span>{exp.involvement}%</span>
                                 </div>
-                                <Progress value={exp.involvement} className={`h-2 bg-white/10 [&>div]:bg-${exp.color}`} />
+                                <Progress value={exp.involvement} className="h-2 bg-border [&>div]:bg-primary" />
                               </div>
                               
-                              <Separator className="bg-white/10" />
+                              <Separator className="bg-border" />
                               
                               <div className="space-y-3">
-                                <h4 className="text-sm font-medium text-white">Applied Skills</h4>
+                                <h4 className="text-sm font-medium text-foreground">Applied Skills</h4>
                                 <div className="flex flex-wrap gap-2">
                                   {exp.skills.map((skill, idx) => (
                                     <Tooltip key={idx}>
                                       <TooltipTrigger asChild>
-                                        <Badge className="bg-black/40 hover:bg-white/10 text-white/80 border border-white/10 cursor-help transition-colors">
+                                        <Badge className="bg-muted hover:bg-primary/10 text-foreground border border-border cursor-help transition-colors">
                                           {skill.name}
                                         </Badge>
                                       </TooltipTrigger>

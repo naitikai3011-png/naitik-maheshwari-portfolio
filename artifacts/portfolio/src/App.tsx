@@ -11,7 +11,6 @@ import Skills from "@/pages/Skills";
 import Resume from "@/pages/Resume";
 import Contact from "@/pages/Contact";
 import Layout from "@/components/Layout";
-import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
@@ -33,11 +32,6 @@ function Router() {
 }
 
 function App() {
-  // Enforce dark mode for the portfolio
-  useEffect(() => {
-    document.documentElement.classList.add("dark");
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
