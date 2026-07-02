@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { 
-  Home, 
-  User, 
-  Briefcase, 
-  Trophy, 
-  Star, 
-  FileText, 
-  Mail,
-  Menu,
-  X
+  Home, User, Briefcase, Trophy, Star, FileText, Mail,
+  Menu, X, FolderOpen, Search
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Kbd } from "@/components/ui/kbd";
+import { CommandPalette, useCommandPalette } from "@/components/CommandPalette";
 import profilePhoto from "@/assets/profile.jpeg";
 
 const navItems = [
-  { title: "Home", url: "/", icon: Home },
-  { title: "About", url: "/about", icon: User },
-  { title: "Experience", url: "/experience", icon: Briefcase },
-  { title: "Awards", url: "/awards", icon: Trophy },
-  { title: "Skills", url: "/skills", icon: Star },
-  { title: "Resume", url: "/resume", icon: FileText },
-  { title: "Contact", url: "/contact", icon: Mail },
+  { title: "Home",       url: "/",            icon: Home },
+  { title: "About",      url: "/about",        icon: User },
+  { title: "Experience", url: "/experience",   icon: Briefcase },
+  { title: "Projects",   url: "/projects",     icon: FolderOpen },
+  { title: "Awards",     url: "/awards",       icon: Trophy },
+  { title: "Skills",     url: "/skills",       icon: Star },
+  { title: "Resume",     url: "/resume",       icon: FileText },
+  { title: "Contact",    url: "/contact",      icon: Mail },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { open: cmdOpen, setOpen: setCmdOpen } = useCommandPalette();
 
   const isActive = (url: string) =>
     url === "/" ? location === "/" : location.startsWith(url);
@@ -43,6 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Top Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-border/60 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+
           {/* Left: avatar + name */}
           <Link href="/" className="flex items-center gap-3 shrink-0 group">
             <Avatar className="w-8 h-8 ring-2 ring-primary/20">
@@ -56,13 +56,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </Link>
 
           {/* Center: nav links (desktop) */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => (
               <Link
                 key={item.title}
                 href={item.url}
                 data-testid={`nav-${item.title.toLowerCase()}`}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
                   isActive(item.url)
                     ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -74,14 +74,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
 
-          {/* Right: available badge + mobile menu */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Right: command, available badge + mobile menu */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Command palette trigger */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="hidden sm:flex items-center gap-2 h-8 px-3 rounded-full bg-muted/50 border-border/60 text-muted-foreground hover:text-foreground hover:bg-muted text-xs"
+                  onClick={() => setCmdOpen(true)}
+                >
+                  <Search className="w-3.5 h-3.5" />
+                  <span className="hidden md:inline">Search</span>
+                  <Kbd className="hidden md:inline-flex bg-background border-border text-muted-foreground text-[10px] px-1 py-0.5">⌘K</Kbd>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Open command palette (⌘K)</TooltipContent>
+            </Tooltip>
+
             <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Available
             </div>
+
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -92,7 +110,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile nav dropdown */}
         {mobileOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-border/60 px-4 py-3">
+          <div className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-border/60 px-4 py-3">
+            {/* Mobile search */}
+            <button
+              className="w-full flex items-center gap-3 px-4 py-2.5 mb-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all border border-border/60 bg-muted/40"
+              onClick={() => { setCmdOpen(true); setMobileOpen(false); }}
+            >
+              <Search className="w-4 h-4" />
+              Search pages & actions...
+              <Kbd className="ml-auto bg-background border-border text-muted-foreground text-[10px]">⌘K</Kbd>
+            </button>
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
@@ -120,6 +147,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </div>
       </main>
+
+      {/* Command Palette */}
+      <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
     </div>
   );
 }

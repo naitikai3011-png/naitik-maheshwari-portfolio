@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Experience from "@/pages/Experience";
+import Projects from "@/pages/Projects";
 import Awards from "@/pages/Awards";
 import Skills from "@/pages/Skills";
 import Resume from "@/pages/Resume";
@@ -21,6 +22,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/experience" component={Experience} />
+        <Route path="/projects" component={Projects} />
         <Route path="/awards" component={Awards} />
         <Route path="/skills" component={Skills} />
         <Route path="/resume" component={Resume} />
