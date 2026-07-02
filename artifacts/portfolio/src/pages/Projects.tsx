@@ -15,7 +15,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter } from "@/components/ui/drawer";
 import {
   ContextMenu, ContextMenuContent, ContextMenuItem,
   ContextMenuSeparator, ContextMenuTrigger
@@ -29,20 +28,22 @@ import { Empty } from "@/components/ui/empty";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import {
   ExternalLink, Play, BookOpen, LayoutGrid, LayoutList,
   Zap, FlaskConical, Globe, Trophy, Users, Cpu, ChevronRight,
-  Copy, Share2, Star, ArrowUpRight
+  Copy, Share2, Star, ArrowUpRight, Github, BarChart2
 } from "lucide-react";
 import { toast } from "sonner";
 
 type ProjectStatus = "Active" | "Complete" | "Research" | "National 1st" | "State 1st";
 type ProjectCategory = "Civic Tech" | "AI Research" | "Community" | "Competition" | "STEM";
+type LinkType = "live" | "github" | "org" | "competition" | "case-study";
 
 interface ProjectLink {
   label: string;
   url: string;
-  type: "demo" | "case-study" | "org" | "competition";
+  type: LinkType;
 }
 
 interface Project {
@@ -59,9 +60,47 @@ interface Project {
   featured: boolean;
   impact: string;
   icon: React.ElementType;
+  stack?: string[];
 }
 
 const projects: Project[] = [
+  {
+    id: "cobb-dashboard",
+    title: "Cobb Youth Civic Intelligence Dashboard",
+    role: "Builder & Youth Commissioner",
+    status: "Active",
+    year: "2026",
+    category: "Civic Tech",
+    shortDesc: "Interactive data visualization dashboard presenting Cobb County youth survey data — mental health access, transportation gaps, employment rates, and civic concerns — built for the Board of Commissioners.",
+    longDesc: "A full-stack civic intelligence platform built as a Cobb County Youth Commissioner to present Spring 2026 youth survey data directly to the Board of Commissioners. Visualizes county-wide trends in mental health service access, transportation gaps, youth employment, and civic engagement. Built with React 19, Express 5, PostgreSQL, Drizzle ORM, and Tailwind CSS v4, using OpenAPI codegen for type-safe API calls and Recharts for interactive data visualization.",
+    tags: ["React", "Express", "PostgreSQL", "Drizzle ORM", "Recharts", "OpenAPI", "CivicTech"],
+    stack: ["React 19", "Express 5", "PostgreSQL", "Drizzle ORM", "Tailwind v4", "shadcn/ui"],
+    links: [
+      { label: "GitHub",    url: "https://github.com/naitikai3011-png/cobb-youth-civic-dashboard", type: "github" },
+    ],
+    featured: true,
+    impact: "Presented to Cobb County Board of Commissioners",
+    icon: BarChart2,
+  },
+  {
+    id: "agency-engine",
+    title: "Agency Engine",
+    role: "Lead Researcher & Architect",
+    status: "Active",
+    year: "2024 – Present",
+    category: "AI Research",
+    shortDesc: "Original AI behavioral framework using an 'Adversarial Partner' model to counter over-reliance on generative AI and reinforce human critical thinking.",
+    longDesc: "Designed an original AI behavioral framework exploring how to counter over-reliance on generative AI through an 'Adversarial Partner' model that uses productive friction to reinforce human critical thinking. The system deliberately challenges users' reasoning rather than simply completing their requests — fostering analytical independence. Researched human-AI interaction principles, cognitive load theory, and outlined a supporting technical architecture for deployment in educational and professional settings.",
+    tags: ["AI Behavioral Research", "Framework Design", "HCI", "Critical Thinking", "NLP"],
+    stack: ["Python", "OpenAI API", "Research Framework"],
+    links: [
+      { label: "Live Demo", url: "https://ai-agency-engine-agency-engine.vercel.app", type: "live" },
+      { label: "GitHub",    url: "https://github.com/naitikai3011-png/AI-Agency-Engine",            type: "github" },
+    ],
+    featured: true,
+    impact: "Novel framework addressing AI cognitive dependency",
+    icon: Zap,
+  },
   {
     id: "predictive-lab",
     title: "Marietta Predictive Social Equity Lab",
@@ -72,27 +111,10 @@ const projects: Project[] = [
     shortDesc: "AI-driven predictive analytics framework to shift Cobb County social services from reactive to proactive — targeting housing instability, food insecurity, and mental health access.",
     longDesc: "Conceived a CivicTech initiative proposing an AI-driven predictive analytics framework to help Cobb County shift social services from reactive to proactive. The framework targets housing instability, food insecurity, and mental health access through ML-based early warning models. Resource-allocation optimization and cost-benefit models draw on Industrial Engineering and Finance principles, proposing a system that identifies at-risk households before crises occur and routes them to the appropriate services preemptively.",
     tags: ["AI/ML", "Predictive Analytics", "Policy Design", "CivicTech", "Systems Thinking"],
-    links: [
-      { label: "View Case Study", url: "https://www.cobbboc.org", type: "case-study" },
-    ],
+    links: [],
     featured: true,
     impact: "Proposed framework covering 760,000+ Cobb County residents",
     icon: Cpu,
-  },
-  {
-    id: "agency-engine",
-    title: "Agency Engine",
-    role: "Lead Researcher & Architect",
-    status: "Research",
-    year: "2024 – Present",
-    category: "AI Research",
-    shortDesc: "Original AI behavioral framework using an 'Adversarial Partner' model to counter over-reliance on generative AI and reinforce human critical thinking.",
-    longDesc: "Designed an original AI behavioral framework exploring how to counter over-reliance on generative AI through an 'Adversarial Partner' model that uses productive friction to reinforce human critical thinking. The system is designed to deliberately challenge users' reasoning rather than simply completing their requests — fostering analytical independence. Researched human-AI interaction principles, cognitive load theory, and outlined a supporting technical architecture for deployment in educational and professional settings.",
-    tags: ["AI Behavioral Research", "Framework Design", "HCI", "Critical Thinking", "NLP"],
-    links: [],
-    featured: true,
-    impact: "Novel framework addressing AI cognitive dependency",
-    icon: Zap,
   },
   {
     id: "yuva",
@@ -102,12 +124,12 @@ const projects: Project[] = [
     year: "2024 – Present",
     category: "Community",
     shortDesc: "Established Wheeler High School's first Hindu YUVA chapter from scratch — promoting service, leadership, and cultural awareness among students.",
-    longDesc: "Founded and built Wheeler High School's Hindu YUVA chapter from the ground up. Hindu YUVA (Youth for Values and Action) is a national organization focused on service, leadership, and cultural education. Designed the chapter's programming calendar, recruited the founding membership, established officer structures, and launched community service projects aligned with the national organization's mission. The chapter has become an active presence in Wheeler's diverse student community.",
+    longDesc: "Founded and built Wheeler High School's Hindu YUVA chapter from the ground up. Hindu YUVA (Youth for Values and Action) is a national organization focused on service, leadership, and cultural education. Designed the chapter's programming calendar, recruited the founding membership, established officer structures, and launched community service projects aligned with the national organization's mission.",
     tags: ["Entrepreneurship", "Cultural Programming", "Community Building", "Leadership"],
     links: [
       { label: "Hindu YUVA National", url: "https://hinduYUVA.org", type: "org" },
     ],
-    featured: true,
+    featured: false,
     impact: "First chapter at Wheeler, growing membership",
     icon: Users,
   },
@@ -163,11 +185,20 @@ const projects: Project[] = [
 const categories = ["All", "Civic Tech", "AI Research", "Community", "Competition", "STEM"];
 
 const statusConfig: Record<ProjectStatus, { label: string; color: string; dot: string }> = {
-  "Active":      { label: "Active",          color: "bg-emerald-50 text-emerald-700 border-emerald-200",  dot: "bg-emerald-500" },
-  "Research":    { label: "Research",         color: "bg-blue-50 text-blue-700 border-blue-200",           dot: "bg-blue-500" },
-  "Complete":    { label: "Complete",          color: "bg-muted text-muted-foreground border-border",       dot: "bg-gray-400" },
-  "National 1st":{ label: "National 1st",     color: "bg-amber-50 text-amber-700 border-amber-200",        dot: "bg-amber-500" },
-  "State 1st":   { label: "State 1st",         color: "bg-violet-50 text-violet-700 border-violet-200",    dot: "bg-violet-500" },
+  "Active":      { label: "Active",       color: "bg-emerald-50 text-emerald-700 border-emerald-200",  dot: "bg-emerald-500" },
+  "Research":    { label: "Research",     color: "bg-blue-50 text-blue-700 border-blue-200",           dot: "bg-blue-500" },
+  "Complete":    { label: "Complete",     color: "bg-muted text-muted-foreground border-border",       dot: "bg-gray-400" },
+  "National 1st":{ label: "National 1st", color: "bg-amber-50 text-amber-700 border-amber-200",       dot: "bg-amber-500" },
+  "State 1st":   { label: "State 1st",   color: "bg-violet-50 text-violet-700 border-violet-200",     dot: "bg-violet-500" },
+};
+
+// Button config per link type
+const linkButtonConfig: Record<LinkType, { icon: React.ElementType; className: string; iconClass: string }> = {
+  live:       { icon: Play,         className: "bg-emerald-500 hover:bg-emerald-600 text-white border-0",              iconClass: "" },
+  github:     { icon: Github,       className: "bg-gray-900 hover:bg-gray-800 text-white border-0",                   iconClass: "" },
+  org:        { icon: ExternalLink, className: "border-border hover:border-primary/40 hover:bg-primary/5",            iconClass: "text-muted-foreground" },
+  competition:{ icon: Trophy,       className: "border-border hover:border-primary/40 hover:bg-primary/5",            iconClass: "text-muted-foreground" },
+  "case-study":{ icon: BookOpen,    className: "border-border hover:border-primary/40 hover:bg-primary/5",            iconClass: "text-muted-foreground" },
 };
 
 const PAGE_SIZE = 4;
@@ -175,18 +206,51 @@ const PAGE_SIZE = 4;
 function StatusBadge({ status }: { status: ProjectStatus }) {
   const cfg = statusConfig[status];
   return (
-    <Badge className={`${cfg.color} border font-medium flex items-center gap-1.5 px-2.5 py-0.5`}>
+    <Badge className={`${cfg.color} border font-medium flex items-center gap-1.5 px-2.5 py-0.5 shrink-0`}>
       <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot} ${status === "Active" ? "animate-pulse" : ""}`} />
       {cfg.label}
     </Badge>
   );
 }
 
+function LinkButtons({ links, size = "sm" }: { links: ProjectLink[]; size?: "sm" | "default" }) {
+  return (
+    <>
+      {links.map((link) => {
+        const cfg = linkButtonConfig[link.type];
+        const Icon = cfg.icon;
+        return (
+          <Tooltip key={link.url}>
+            <TooltipTrigger asChild>
+              <Button
+                size={size}
+                variant={link.type === "live" || link.type === "github" ? "default" : "outline"}
+                className={`${cfg.className} ${size === "sm" ? "h-8 text-xs px-3" : "px-4"} rounded-lg font-medium`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(link.url, "_blank", "noopener,noreferrer");
+                }}
+              >
+                <Icon className={`w-3.5 h-3.5 mr-1.5 ${cfg.iconClass}`} />
+                {link.label}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{link.url}</TooltipContent>
+          </Tooltip>
+        );
+      })}
+    </>
+  );
+}
+
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href + "#" + project.id);
+    navigator.clipboard.writeText(window.location.href.split("#")[0] + "#" + project.id);
     toast.success("Link copied to clipboard");
   };
+
+  const liveLink = project.links.find(l => l.type === "live");
+  const githubLink = project.links.find(l => l.type === "github");
 
   return (
     <ContextMenu>
@@ -197,6 +261,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
+          className="h-full"
         >
           <Card
             className="glass-card h-full flex flex-col overflow-hidden hover:border-primary/40 hover:shadow-md transition-all cursor-pointer group"
@@ -215,10 +280,28 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
               </CardTitle>
               <p className="text-sm font-medium text-primary">{project.role}</p>
             </CardHeader>
-            <CardContent className="flex flex-col flex-1 gap-4">
+            <CardContent className="flex flex-col flex-1 gap-3">
               <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{project.shortDesc}</p>
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-                {project.tags.slice(0, 3).map(tag => (
+
+              {/* Tech stack pills */}
+              {project.stack && (
+                <div className="flex flex-wrap gap-1.5">
+                  {project.stack.slice(0, 3).map(t => (
+                    <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-primary/6 border border-primary/15 text-primary font-medium">
+                      {t}
+                    </span>
+                  ))}
+                  {project.stack.length > 3 && (
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-muted border border-border text-muted-foreground font-medium">
+                      +{project.stack.length - 3}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Tag row */}
+              <div className="flex flex-wrap gap-1.5">
+                {project.tags.slice(0, project.stack ? 2 : 3).map(tag => (
                   <Badge key={tag} variant="outline" className="bg-muted/60 border-border text-muted-foreground text-xs font-normal">
                     {tag}
                   </Badge>
@@ -229,28 +312,54 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
                   </Badge>
                 )}
               </div>
-              <div className="flex items-center gap-2 pt-2 border-t border-border/60">
-                <Button size="sm" className="flex-1 h-8 text-xs rounded-lg" onClick={(e) => { e.stopPropagation(); onClick(); }}>
-                  <BookOpen className="w-3.5 h-3.5 mr-1.5" /> Case Study
-                </Button>
-                {project.links.length > 0 && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="h-8 w-8 p-0 rounded-lg hover:border-primary/40"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.links[0].url, "_blank");
-                        }}
-                      >
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>{project.links[0].label}</TooltipContent>
-                  </Tooltip>
+
+              {/* Action row */}
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/60 mt-auto">
+                {/* Live Demo button — most prominent */}
+                {liveLink && (
+                  <Button
+                    size="sm"
+                    className="h-8 text-xs px-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white border-0 font-medium"
+                    onClick={(e) => { e.stopPropagation(); window.open(liveLink.url, "_blank", "noopener,noreferrer"); }}
+                  >
+                    <Play className="w-3.5 h-3.5 mr-1.5" /> Live Demo
+                  </Button>
                 )}
+                {/* GitHub button */}
+                {githubLink && (
+                  <Button
+                    size="sm"
+                    className="h-8 text-xs px-3 rounded-lg bg-gray-900 hover:bg-gray-800 text-white border-0 font-medium"
+                    onClick={(e) => { e.stopPropagation(); window.open(githubLink.url, "_blank", "noopener,noreferrer"); }}
+                  >
+                    <Github className="w-3.5 h-3.5 mr-1.5" /> GitHub
+                  </Button>
+                )}
+                {/* Other links */}
+                {project.links.filter(l => l.type !== "live" && l.type !== "github").map(link => {
+                  const cfg = linkButtonConfig[link.type];
+                  const Icon = cfg.icon;
+                  return (
+                    <Button
+                      key={link.url}
+                      size="sm"
+                      variant="outline"
+                      className="h-8 text-xs px-3 rounded-lg border-border hover:border-primary/40 hover:bg-primary/5"
+                      onClick={(e) => { e.stopPropagation(); window.open(link.url, "_blank", "noopener,noreferrer"); }}
+                    >
+                      <Icon className="w-3.5 h-3.5 mr-1.5 text-muted-foreground" /> {link.label}
+                    </Button>
+                  );
+                })}
+                {/* Case study always available */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-8 text-xs px-3 rounded-lg border-border hover:border-primary/40 hover:bg-primary/5 ml-auto"
+                  onClick={(e) => { e.stopPropagation(); onClick(); }}
+                >
+                  <BookOpen className="w-3.5 h-3.5 mr-1.5 text-muted-foreground" /> Details
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -260,11 +369,16 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         <ContextMenuItem onClick={onClick}>
           <BookOpen className="w-4 h-4 mr-2" /> View Case Study
         </ContextMenuItem>
-        {project.links.map(link => (
-          <ContextMenuItem key={link.url} onClick={() => window.open(link.url, "_blank")}>
-            <ExternalLink className="w-4 h-4 mr-2" /> {link.label}
+        {project.links.find(l => l.type === "live") && (
+          <ContextMenuItem onClick={() => window.open(project.links.find(l => l.type === "live")!.url, "_blank")}>
+            <Play className="w-4 h-4 mr-2 text-emerald-600" /> Open Live Demo
           </ContextMenuItem>
-        ))}
+        )}
+        {project.links.find(l => l.type === "github") && (
+          <ContextMenuItem onClick={() => window.open(project.links.find(l => l.type === "github")!.url, "_blank")}>
+            <Github className="w-4 h-4 mr-2" /> View on GitHub
+          </ContextMenuItem>
+        )}
         <ContextMenuSeparator />
         <ContextMenuItem onClick={handleCopy}>
           <Copy className="w-4 h-4 mr-2" /> Copy Link
@@ -287,46 +401,76 @@ function FeaturedCarousel({ projects, onSelect }: { projects: Project[]; onSelec
       </div>
       <Carousel opts={{ align: "start", loop: true }} className="w-full">
         <CarouselContent className="-ml-4">
-          {projects.map((project) => (
-            <CarouselItem key={project.id} className="pl-4 md:basis-1/2 lg:basis-1/2">
-              <Card
-                className="glass-card border-border hover:border-primary/40 hover:shadow-lg transition-all cursor-pointer group overflow-hidden h-full"
-                onClick={() => onSelect(project)}
-              >
-                <CardContent className="p-6 flex flex-col h-full min-h-[240px]">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
-                        <project.icon className="w-6 h-6" />
+          {projects.map((project) => {
+            const liveLink  = project.links.find(l => l.type === "live");
+            const githubLink = project.links.find(l => l.type === "github");
+            return (
+              <CarouselItem key={project.id} className="pl-4 md:basis-1/2 lg:basis-1/2">
+                <Card
+                  className="glass-card border-border hover:border-primary/40 hover:shadow-lg transition-all cursor-pointer group overflow-hidden h-full"
+                  onClick={() => onSelect(project)}
+                >
+                  <CardContent className="p-6 flex flex-col h-full min-h-[260px]">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                          <project.icon className="w-6 h-6" />
+                        </div>
+                        <StatusBadge status={project.status} />
                       </div>
-                      <StatusBadge status={project.status} />
+                      <span className="text-xs text-muted-foreground font-medium">{project.year}</span>
                     </div>
-                    <span className="text-xs text-muted-foreground font-medium">{project.year}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm font-semibold text-primary mb-3">{project.role}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 flex-1">{project.shortDesc}</p>
-                  <div className="mt-4 pt-4 border-t border-border/60 flex items-center gap-2">
-                    <Button size="sm" className="rounded-full text-xs">
-                      <Play className="w-3 h-3 mr-1.5" /> View Project
-                    </Button>
-                    {project.links.length > 0 && (
+
+                    <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm font-semibold text-primary mb-3">{project.role}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">{project.shortDesc}</p>
+
+                    {/* Stack */}
+                    {project.stack && (
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {project.stack.slice(0, 4).map(t => (
+                          <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-primary/8 border border-primary/15 text-primary font-medium">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="mt-4 pt-4 border-t border-border/60 flex flex-wrap items-center gap-2">
+                      {liveLink && (
+                        <Button
+                          size="sm"
+                          className="rounded-lg text-xs h-8 px-3 bg-emerald-500 hover:bg-emerald-600 text-white border-0 font-medium"
+                          onClick={(e) => { e.stopPropagation(); window.open(liveLink.url, "_blank", "noopener,noreferrer"); }}
+                        >
+                          <Play className="w-3 h-3 mr-1.5" /> Live Demo
+                        </Button>
+                      )}
+                      {githubLink && (
+                        <Button
+                          size="sm"
+                          className="rounded-lg text-xs h-8 px-3 bg-gray-900 hover:bg-gray-800 text-white border-0 font-medium"
+                          onClick={(e) => { e.stopPropagation(); window.open(githubLink.url, "_blank", "noopener,noreferrer"); }}
+                        >
+                          <Github className="w-3 h-3 mr-1.5" /> GitHub
+                        </Button>
+                      )}
                       <Button
                         size="sm"
                         variant="outline"
-                        className="rounded-full text-xs hover:border-primary/40"
-                        onClick={(e) => { e.stopPropagation(); window.open(project.links[0].url, "_blank"); }}
+                        className="rounded-lg text-xs h-8 px-3 ml-auto hover:border-primary/40"
+                        onClick={(e) => { e.stopPropagation(); onSelect(project); }}
                       >
-                        <ExternalLink className="w-3 h-3 mr-1.5" /> {project.links[0].label}
+                        <BookOpen className="w-3 h-3 mr-1.5" /> Details
                       </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         <CarouselPrevious className="left-0 -translate-x-1/2" />
         <CarouselNext className="right-0 translate-x-1/2" />
@@ -335,7 +479,11 @@ function FeaturedCarousel({ projects, onSelect }: { projects: Project[]; onSelec
   );
 }
 
-function ProjectDetailDialog({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectDetailDialog({ project }: { project: Project }) {
+  const liveLink   = project.links.find(l => l.type === "live");
+  const githubLink = project.links.find(l => l.type === "github");
+  const otherLinks = project.links.filter(l => l.type !== "live" && l.type !== "github");
+
   return (
     <DialogContent className="glass-card border-border sm:max-w-2xl max-h-[85vh] overflow-y-auto">
       <DialogHeader>
@@ -361,13 +509,54 @@ function ProjectDetailDialog({ project, onClose }: { project: Project; onClose: 
         </div>
       </DialogHeader>
 
+      {/* Live Demo + GitHub — hero buttons */}
+      {(liveLink || githubLink) && (
+        <div className="flex flex-wrap gap-3 p-4 rounded-xl bg-muted/50 border border-border mb-2">
+          {liveLink && (
+            <a
+              href={liveLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold transition-colors shadow-sm"
+            >
+              <Play className="w-4 h-4" /> Live Demo
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+            </a>
+          )}
+          {githubLink && (
+            <a
+              href={githubLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold transition-colors shadow-sm"
+            >
+              <Github className="w-4 h-4" /> View on GitHub
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+            </a>
+          )}
+          {liveLink && (
+            <p className="w-full text-xs text-muted-foreground mt-1">
+              <span className="font-medium text-emerald-700">Live at:</span>{" "}
+              <a href={liveLink.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary transition-colors break-all">
+                {liveLink.url.replace("https://", "")}
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+
       <Tabs defaultValue="overview" className="mt-2">
         <TabsList className="bg-muted border border-border rounded-xl p-1 w-full">
           <TabsTrigger value="overview" className="flex-1 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">
             Overview
           </TabsTrigger>
+          {project.stack && (
+            <TabsTrigger value="stack" className="flex-1 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">
+              Tech Stack
+            </TabsTrigger>
+          )}
           <TabsTrigger value="skills" className="flex-1 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">
-            Skills Applied
+            Skills
           </TabsTrigger>
           <TabsTrigger value="impact" className="flex-1 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">
             Impact
@@ -375,10 +564,20 @@ function ProjectDetailDialog({ project, onClose }: { project: Project; onClose: 
         </TabsList>
 
         <TabsContent value="overview" className="mt-4">
-          <div className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed text-base">{project.longDesc}</p>
-          </div>
+          <p className="text-muted-foreground leading-relaxed text-base">{project.longDesc}</p>
         </TabsContent>
+
+        {project.stack && (
+          <TabsContent value="stack" className="mt-4">
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map(t => (
+                <Badge key={t} className="bg-primary/10 text-primary border-primary/20 px-3 py-1.5 text-sm font-medium">
+                  {t}
+                </Badge>
+              ))}
+            </div>
+          </TabsContent>
+        )}
 
         <TabsContent value="skills" className="mt-4">
           <div className="flex flex-wrap gap-2">
@@ -403,15 +602,20 @@ function ProjectDetailDialog({ project, onClose }: { project: Project; onClose: 
         </TabsContent>
       </Tabs>
 
-      {project.links.length > 0 && (
+      {/* Other external links */}
+      {otherLinks.length > 0 && (
         <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-border">
-          {project.links.map(link => (
-            <Button key={link.url} asChild className="rounded-full">
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4 mr-2" /> {link.label}
-              </a>
-            </Button>
-          ))}
+          {otherLinks.map(link => {
+            const cfg = linkButtonConfig[link.type];
+            const Icon = cfg.icon;
+            return (
+              <Button key={link.url} variant="outline" asChild className="rounded-full hover:border-primary/40 hover:bg-primary/5">
+                <a href={link.url} target="_blank" rel="noopener noreferrer">
+                  <Icon className="w-4 h-4 mr-2" /> {link.label}
+                </a>
+              </Button>
+            );
+          })}
         </div>
       )}
     </DialogContent>
@@ -428,45 +632,79 @@ function TableView({ projects, onSelect }: { projects: Project[]; onSelect: (p: 
             <TableHead className="font-semibold text-foreground hidden sm:table-cell">Category</TableHead>
             <TableHead className="font-semibold text-foreground hidden md:table-cell">Status</TableHead>
             <TableHead className="font-semibold text-foreground hidden lg:table-cell">Year</TableHead>
-            <TableHead className="font-semibold text-foreground text-right">Action</TableHead>
+            <TableHead className="font-semibold text-foreground">Links</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {projects.map((project) => (
-            <TableRow
-              key={project.id}
-              className="cursor-pointer hover:bg-primary/5 transition-colors"
-              onClick={() => onSelect(project)}
-            >
-              <TableCell>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/8 text-primary border border-primary/15 shrink-0">
-                    <project.icon className="w-4 h-4" />
+          {projects.map((project) => {
+            const liveLink   = project.links.find(l => l.type === "live");
+            const githubLink = project.links.find(l => l.type === "github");
+            return (
+              <TableRow
+                key={project.id}
+                className="cursor-pointer hover:bg-primary/5 transition-colors"
+                onClick={() => onSelect(project)}
+              >
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-primary/8 text-primary border border-primary/15 shrink-0">
+                      <project.icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground text-sm leading-snug">{project.title}</p>
+                      <p className="text-xs text-primary font-medium">{project.role}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground text-sm leading-snug">{project.title}</p>
-                    <p className="text-xs text-primary font-medium">{project.role}</p>
+                </TableCell>
+                <TableCell className="hidden sm:table-cell">
+                  <Badge variant="outline" className="bg-primary/5 border-primary/20 text-primary text-xs">
+                    {project.category}
+                  </Badge>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  <StatusBadge status={project.status} />
+                </TableCell>
+                <TableCell className="hidden lg:table-cell">
+                  <span className="text-sm text-muted-foreground">{project.year}</span>
+                </TableCell>
+                <TableCell onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center gap-1.5">
+                    {liveLink && (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            size="sm"
+                            className="h-7 w-7 p-0 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white border-0"
+                            onClick={() => window.open(liveLink.url, "_blank", "noopener,noreferrer")}
+                          >
+                            <Play className="w-3 h-3" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Live Demo</TooltipContent>
+                      </Tooltip>
+                    )}
+                    {githubLink && (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            size="sm"
+                            className="h-7 w-7 p-0 rounded-lg bg-gray-900 hover:bg-gray-800 text-white border-0"
+                            onClick={() => window.open(githubLink.url, "_blank", "noopener,noreferrer")}
+                          >
+                            <Github className="w-3 h-3" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>View on GitHub</TooltipContent>
+                      </Tooltip>
+                    )}
+                    <Button size="sm" variant="ghost" className="h-7 w-7 p-0 hover:bg-primary/10 hover:text-primary rounded-lg" onClick={() => onSelect(project)}>
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
                   </div>
-                </div>
-              </TableCell>
-              <TableCell className="hidden sm:table-cell">
-                <Badge variant="outline" className="bg-primary/5 border-primary/20 text-primary text-xs">
-                  {project.category}
-                </Badge>
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                <StatusBadge status={project.status} />
-              </TableCell>
-              <TableCell className="hidden lg:table-cell">
-                <span className="text-sm text-muted-foreground">{project.year}</span>
-              </TableCell>
-              <TableCell className="text-right">
-                <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary rounded-lg">
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </div>
@@ -487,9 +725,8 @@ function LoadingSkeletons() {
           <Skeleton className="w-1/2 h-4 rounded" />
           <Skeleton className="w-full h-12 rounded" />
           <div className="flex gap-2">
-            <Skeleton className="w-16 h-5 rounded-full" />
-            <Skeleton className="w-20 h-5 rounded-full" />
-            <Skeleton className="w-14 h-5 rounded-full" />
+            <Skeleton className="w-20 h-8 rounded-lg" />
+            <Skeleton className="w-20 h-8 rounded-lg" />
           </div>
         </Card>
       ))}
@@ -510,17 +747,18 @@ export default function Projects() {
   const filtered = useMemo(() => {
     let list = category === "All" ? projects : projects.filter(p => p.category === category);
     if (sort === "year-desc") list = [...list].sort((a, b) => b.year.localeCompare(a.year));
-    if (sort === "year-asc") list = [...list].sort((a, b) => a.year.localeCompare(b.year));
-    if (sort === "featured") list = [...list].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    if (sort === "year-asc")  list = [...list].sort((a, b) => a.year.localeCompare(b.year));
+    if (sort === "featured")  list = [...list].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     return list;
   }, [category, sort]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-  const handleCategoryChange = (val: string) => {
-    if (val) { setCategory(val); setPage(1); }
-  };
+  const handleCategoryChange = (val: string) => { if (val) { setCategory(val); setPage(1); } };
+
+  const liveCount = projects.filter(p => p.links.some(l => l.type === "live")).length;
+  const githubCount = projects.filter(p => p.links.some(l => l.type === "github")).length;
 
   return (
     <div className="space-y-8 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -545,17 +783,22 @@ export default function Projects() {
 
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[
-          { label: "Total Projects", value: projects.length.toString(), color: "text-foreground" },
-          { label: "Active / Research", value: projects.filter(p => ["Active","Research"].includes(p.status)).length.toString(), color: "text-blue-600" },
-          { label: "1st Place Wins", value: projects.filter(p => p.status.includes("1st")).length.toString(), color: "text-amber-600" },
-          { label: "Categories", value: "5", color: "text-primary" },
-        ].map(stat => (
-          <Card key={stat.label} className="glass-card p-4 text-center hover:border-primary/30 transition-all">
-            <p className={`text-2xl font-display font-bold ${stat.color}`}>{stat.value}</p>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</p>
-          </Card>
-        ))}
+        <Card className="glass-card p-4 text-center hover:border-primary/30 transition-all">
+          <p className="text-2xl font-display font-bold text-foreground">{projects.length}</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Total Projects</p>
+        </Card>
+        <Card className="glass-card p-4 text-center hover:border-primary/30 transition-all bg-emerald-50/60 border-emerald-200">
+          <p className="text-2xl font-display font-bold text-emerald-700">{liveCount}</p>
+          <p className="text-xs text-emerald-700 uppercase tracking-wider mt-1">Live Demos</p>
+        </Card>
+        <Card className="glass-card p-4 text-center hover:border-primary/30 transition-all bg-gray-50 border-gray-200">
+          <p className="text-2xl font-display font-bold text-gray-800">{githubCount}</p>
+          <p className="text-xs text-gray-600 uppercase tracking-wider mt-1">On GitHub</p>
+        </Card>
+        <Card className="glass-card p-4 text-center hover:border-primary/30 transition-all">
+          <p className="text-2xl font-display font-bold text-amber-600">{projects.filter(p => p.status.includes("1st")).length}</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">1st Place Wins</p>
+        </Card>
       </div>
 
       {/* Featured Carousel — shown when viewing All */}
@@ -602,10 +845,7 @@ export default function Projects() {
                 <TooltipTrigger asChild>
                   <div className="flex items-center">
                     <RadioGroupItem value="grid" id="view-grid" className="sr-only" />
-                    <Label
-                      htmlFor="view-grid"
-                      className={`p-1.5 rounded-md cursor-pointer transition-colors ${view === "grid" ? "bg-white text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
-                    >
+                    <Label htmlFor="view-grid" className={`p-1.5 rounded-md cursor-pointer transition-colors ${view === "grid" ? "bg-white text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                       <LayoutGrid className="w-4 h-4" />
                     </Label>
                   </div>
@@ -616,10 +856,7 @@ export default function Projects() {
                 <TooltipTrigger asChild>
                   <div className="flex items-center">
                     <RadioGroupItem value="table" id="view-table" className="sr-only" />
-                    <Label
-                      htmlFor="view-table"
-                      className={`p-1.5 rounded-md cursor-pointer transition-colors ${view === "table" ? "bg-white text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
-                    >
+                    <Label htmlFor="view-table" className={`p-1.5 rounded-md cursor-pointer transition-colors ${view === "table" ? "bg-white text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                       <LayoutList className="w-4 h-4" />
                     </Label>
                   </div>
@@ -640,10 +877,7 @@ export default function Projects() {
       {isLoading ? (
         <LoadingSkeletons />
       ) : paginated.length === 0 ? (
-        <Empty
-          title="No projects found"
-          description="Try selecting a different category filter."
-        />
+        <Empty title="No projects found" description="Try selecting a different category filter." />
       ) : (
         <AnimatePresence mode="wait">
           {view === "grid" ? (
@@ -676,39 +910,25 @@ export default function Projects() {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious
-                href="#"
-                onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }}
-                className={page === 1 ? "pointer-events-none opacity-50" : ""}
-              />
+              <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }} className={page === 1 ? "pointer-events-none opacity-50" : ""} />
             </PaginationItem>
             {Array.from({ length: totalPages }).map((_, i) => (
               <PaginationItem key={i}>
-                <PaginationLink
-                  href="#"
-                  isActive={page === i + 1}
-                  onClick={(e) => { e.preventDefault(); setPage(i + 1); }}
-                >
+                <PaginationLink href="#" isActive={page === i + 1} onClick={(e) => { e.preventDefault(); setPage(i + 1); }}>
                   {i + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext
-                href="#"
-                onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }}
-                className={page === totalPages ? "pointer-events-none opacity-50" : ""}
-              />
+              <PaginationNext href="#" onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }} className={page === totalPages ? "pointer-events-none opacity-50" : ""} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
       )}
 
-      {/* Project Detail Dialog (desktop) */}
+      {/* Project Detail Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        {selectedProject && (
-          <ProjectDetailDialog project={selectedProject} onClose={() => setSelectedProject(null)} />
-        )}
+        {selectedProject && <ProjectDetailDialog project={selectedProject} />}
       </Dialog>
     </div>
   );
