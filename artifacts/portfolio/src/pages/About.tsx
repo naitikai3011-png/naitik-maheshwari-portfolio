@@ -15,7 +15,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, Info } from "lucide-react";
-import profilePhoto from "@assets/IMG_6720_1780111869102.jpeg";
+import profilePhoto from "@/assets/profile.jpeg";
 
 export default function About() {
   return (

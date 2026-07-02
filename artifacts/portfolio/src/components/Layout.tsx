@@ -12,7 +12,7 @@ import {
   X
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import profilePhoto from "@assets/IMG_6720_1780111869102.jpeg";
+import profilePhoto from "@/assets/profile.jpeg";
 
 const navItems = [
   { title: "Home", url: "/", icon: Home },
