@@ -13,66 +13,87 @@ import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Trophy, Award, Globe, Users, Star, StarIcon, MapPin, Calendar } from "lucide-react";
+import { Trophy, Award, Globe, Users, Star, StarIcon, MapPin, Calendar, Dumbbell } from "lucide-react";
 
 const awardsData = [
   {
     id: "1",
-    title: "Northwest Georgia 4-H Public Speaking: Human Rights Across Different Regions",
+    title: "Georgia 4-H Consumer Judging",
+    place: "1st Place",
+    level: "State",
+    icon: Star,
+    color: "yellow",
+    desc: "Won the state championship in consumer judging, critically evaluating consumer products and defending reasoning before judges — qualifying the team for Nationals.",
+    date: "2024",
+    location: "Georgia"
+  },
+  {
+    id: "2",
+    title: "National FCS Consumer Judging Team Championship",
+    place: "1st Place",
+    level: "National",
+    icon: Trophy,
+    color: "purple",
+    desc: "Won the National FCS Consumer Judging Team Championship, representing Georgia after qualifying at the state level. Evaluated consumer products and defended analytical reasoning before national-level judges.",
+    date: "2024",
+    location: "National"
+  },
+  {
+    id: "3",
+    title: "Northwest District Project Achievement — Human Rights Across Different Regions",
     place: "1st Place",
     level: "District",
     icon: Award,
-    color: "yellow",
-    desc: "Delivered a comprehensive presentation on global human rights violations, securing first place in the highly competitive district level event.",
+    color: "emerald",
+    desc: "Conducted independent research on global human rights issues and delivered a competitive presentation before judges and peers, securing 1st place at the district level.",
     date: "2025",
     location: "Northwest Georgia"
   },
   {
-    id: "2",
+    id: "4",
+    title: "Northwest Georgia 4-H Public Speaking",
+    place: "1st Place",
+    level: "District",
+    icon: Award,
+    color: "orange",
+    desc: "Secured first place in the district for persuasive and informative public speaking, recognized for delivery, content, and audience engagement.",
+    date: "2023",
+    location: "Northwest Georgia"
+  },
+  {
+    id: "5",
     title: "Georgia State Congress",
     category: "International Category",
     place: "4th Place",
     level: "State",
     icon: Globe,
     color: "blue",
-    desc: "Competed at the state level in legislative simulation, debating complex international policies and authoring bills.",
+    desc: "Competed at the state level in legislative simulation, debating complex international policies and authoring bills in the International category.",
     date: "2024",
     location: "Atlanta, GA"
   },
   {
-    id: "3",
-    title: "National Consumer Judging Qualifying Team",
-    place: "National Qualifier",
-    level: "National",
-    icon: Users,
-    color: "purple",
-    desc: "Qualified as part of the state team to represent Georgia at the national consumer judging competition, evaluating products and services.",
+    id: "6",
+    title: "Academic Letter Recipient",
+    place: "Honor",
+    level: "School",
+    icon: Award,
+    color: "indigo",
+    desc: "Earned an Academic Letter for sustained academic excellence across Honors and AP coursework at Wheeler High School STEM Magnet.",
     date: "2024",
-    location: "National"
+    location: "Wheeler High School"
   },
   {
-    id: "4",
-    title: "Georgia 4-H Consumer Judging",
-    place: "1st Place",
+    id: "7",
+    title: "Varsity Swim & Water Polo — Georgia State Champions",
+    place: "State Champions",
     level: "State",
-    icon: Star,
-    color: "emerald",
-    desc: "Won the top statewide honor for critical thinking and rational decision-making in the consumer sciences judging competition.",
-    date: "2023",
+    icon: Dumbbell,
+    color: "cyan",
+    desc: "Member of the Varsity Swim & Water Polo team that won the Georgia State Championship.",
+    date: "2024",
     location: "Georgia"
-  },
-  {
-    id: "5",
-    title: "4-H Public Speaking Competition",
-    place: "1st Place",
-    level: "District",
-    icon: Trophy,
-    color: "orange",
-    desc: "Secured first place in the district for persuasive and informative public speaking.",
-    date: "2023",
-    location: "Northwest Georgia"
   }
 ];
 
@@ -107,24 +128,24 @@ export default function Awards() {
       <div>
         <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">Awards & Honors</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Recognized for excellence in public speaking, legislative simulation, and critical analysis at the district, state, and national levels.
+          Recognized for excellence in consumer judging, public speaking, legislative simulation, and athletics at the district, state, and national levels.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         <Card className="glass-card bg-primary/10 border-primary/20 p-6 flex flex-col justify-center items-center text-center">
           <Trophy className="w-8 h-8 text-primary mb-2" />
-          <span className="text-3xl font-display font-bold text-white">5</span>
+          <span className="text-3xl font-display font-bold text-white">7</span>
           <span className="text-sm font-medium text-primary uppercase tracking-wider">Total Awards</span>
         </Card>
         <Card className="glass-card bg-yellow-500/10 border-yellow-500/20 p-6 flex flex-col justify-center items-center text-center">
           <StarIcon className="w-8 h-8 text-yellow-500 mb-2" />
-          <span className="text-3xl font-display font-bold text-white">3</span>
+          <span className="text-3xl font-display font-bold text-white">4</span>
           <span className="text-sm font-medium text-yellow-500 uppercase tracking-wider">First Place Finishes</span>
         </Card>
         <Card className="glass-card bg-secondary/10 border-secondary/20 p-6 flex flex-col justify-center items-center text-center">
           <Globe className="w-8 h-8 text-secondary mb-2" />
-          <span className="text-3xl font-display font-bold text-white">State & National</span>
+          <span className="text-3xl font-display font-bold text-white">District–National</span>
           <span className="text-sm font-medium text-secondary uppercase tracking-wider">Competition Level</span>
         </Card>
       </div>
@@ -133,7 +154,7 @@ export default function Awards() {
         <Award className="h-5 w-5 text-primary" />
         <AlertTitle className="text-white font-semibold tracking-wide">Top Achievement</AlertTitle>
         <AlertDescription className="text-muted-foreground">
-          Recent 1st Place victory in Northwest Georgia 4-H Public Speaking focusing on "Human Rights Across Different Regions".
+          1st Place National FCS Consumer Judging Team Championship — won after also winning the Georgia State Championship in consumer judging.
         </AlertDescription>
       </Alert>
 
@@ -165,7 +186,7 @@ export default function Awards() {
                 
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Badge className={`${award.place.includes("1st") ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/30" : "bg-white/10 text-white border-white/20"} font-medium`}>
+                    <Badge className={`${award.place.includes("1st") || award.place === "State Champions" ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/30" : "bg-white/10 text-white border-white/20"} font-medium`}>
                       {award.place}
                     </Badge>
                   </TooltipTrigger>
@@ -198,7 +219,7 @@ export default function Awards() {
                     <selectedAward.icon className="w-8 h-8" />
                   </div>
                   <div>
-                    <Badge className={`${selectedAward.place.includes("1st") ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/30" : "bg-white/10 text-white border-white/20"} mb-1`}>
+                    <Badge className={`${selectedAward.place.includes("1st") || selectedAward.place === "State Champions" ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/30" : "bg-white/10 text-white border-white/20"} mb-1`}>
                       {selectedAward.place}
                     </Badge>
                     <Badge variant="outline" className="ml-2 bg-black/30 border-white/10">

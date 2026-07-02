@@ -17,13 +17,15 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Kbd } from "@/components/ui/kbd";
-import { ChevronDown, BarChart2, MessageSquare, Briefcase, Search } from "lucide-react";
+import { ChevronDown, BarChart2, MessageSquare, Briefcase, Search, Code2, Palette } from "lucide-react";
 
 const hardSkills = [
-  { name: "Research and Data Analysis", level: 90, icon: Search, color: "bg-blue-500" },
   { name: "Civic Engagement and Policy Awareness", level: 95, icon: Briefcase, color: "bg-primary" },
+  { name: "Research and Data Analysis", level: 90, icon: Search, color: "bg-blue-500" },
   { name: "Event Planning & Youth Leadership Coordination", level: 85, icon: BarChart2, color: "bg-emerald-500" },
   { name: "Microsoft Office & Google Workspace", level: 80, icon: MessageSquare, color: "bg-yellow-500" },
+  { name: "Python", level: 70, icon: Code2, color: "bg-sky-500" },
+  { name: "Canva", level: 75, icon: Palette, color: "bg-pink-500" },
 ];
 
 const softSkills = [
@@ -34,7 +36,11 @@ const softSkills = [
   "Public Speaking",
   "Strategic Planning",
   "Problem Solving",
-  "Adaptability"
+  "Adaptability",
+  "Servant Leadership",
+  "Organizational Management",
+  "Conflict Resolution",
+  "Active Listening"
 ];
 
 export default function Skills() {
@@ -60,7 +66,7 @@ export default function Skills() {
         <div>
           <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">Core Competencies</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">
-            A balanced mix of technical capabilities and interpersonal skills developed through diverse leadership roles.
+            A balanced mix of technical capabilities and interpersonal skills developed through diverse leadership roles, research projects, and civic engagement.
           </p>
         </div>
         <div className="flex items-center space-x-2 bg-white/5 p-2 rounded-lg border border-white/10">
@@ -121,7 +127,7 @@ export default function Skills() {
                     <ChevronDown className="w-4 h-4" />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="p-3 text-sm text-muted-foreground bg-black/20 rounded-lg border border-white/5">
-                    Combining data analysis with civic awareness to produce well-researched policy positions and persuasive arguments for competitions and presentations.
+                    Combining data analysis with civic awareness to produce well-researched policy positions and persuasive arguments for competitions, presentations, and government initiatives.
                   </CollapsibleContent>
                 </Collapsible>
                 
@@ -131,7 +137,17 @@ export default function Skills() {
                     <ChevronDown className="w-4 h-4" />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="p-3 text-sm text-muted-foreground bg-black/20 rounded-lg border border-white/5">
-                    Utilizing cultural awareness to effectively manage and organize youth teams in 4-H district initiatives, ensuring inclusive and engaging events.
+                    Utilizing cultural awareness to effectively manage and organize youth teams in 4-H district initiatives, SAB, and Hindu YUVA, ensuring inclusive and engaging events across diverse communities.
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <Collapsible className="space-y-2 mt-2">
+                  <CollapsibleTrigger className="flex items-center justify-between w-full p-3 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors font-medium text-sm">
+                    CivicTech & AI Research
+                    <ChevronDown className="w-4 h-4" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="p-3 text-sm text-muted-foreground bg-black/20 rounded-lg border border-white/5">
+                    Applying Python, data modeling, and policy analysis to design AI-driven civic tech systems — including predictive analytics for social services equity and frameworks for healthy human-AI collaboration.
                   </CollapsibleContent>
                 </Collapsible>
               </CardContent>

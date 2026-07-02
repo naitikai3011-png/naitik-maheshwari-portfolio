@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,48 +19,212 @@ import { Separator } from "@/components/ui/separator";
 const experiences = [
   {
     id: "1",
-    role: "Cobb County Youth Commissioner",
+    role: "Georgia 4-H Northwest District Board of Directors",
+    title: "District Officer",
+    date: "2025 – Present",
+    type: "Leadership",
+    description: "Elected to represent youth across Northwest Georgia. Plan and coordinate district-wide leadership conferences and community service projects, and mentor incoming members on officer responsibilities and public speaking.",
+    skills: [
+      { name: "Event Coordination", desc: "Organizing district-wide leadership conferences" },
+      { name: "Mentorship", desc: "Guiding incoming officers and delegates" },
+      { name: "Strategic Planning", desc: "Developing outreach strategies for 4-H" },
+      { name: "Public Speaking", desc: "Representing the district at state events" }
+    ],
+    involvement: 95,
+    color: "secondary"
+  },
+  {
+    id: "2",
+    role: "Wheeler Magnet Student Advisory Board (SAB)",
+    title: "Vice President",
+    date: "2025 – Present",
+    type: "Leadership",
+    description: "Represent the student body in meetings with school administration. Help coordinate advisory board initiatives and communicate student feedback on magnet program policy decisions.",
+    skills: [
+      { name: "Stakeholder Communication", desc: "Bridging students and administration" },
+      { name: "Policy Feedback", desc: "Advising on magnet program decisions" },
+      { name: "Board Leadership", desc: "Coordinating SAB initiatives and meetings" }
+    ],
+    involvement: 90,
+    color: "primary"
+  },
+  {
+    id: "3",
+    role: "Cobb County Youth Commission",
+    title: "Member",
     date: "Aug 2024 – Sep 2025",
     type: "Government",
-    description: "Selected to represent youth voices in county government. Collaborated with officials on civic initiatives and contributed to discussions on local policies and community improvement.",
+    description: "Represent the perspectives of Cobb County youth in local government proceedings. Collaborate with elected officials and fellow commissioners on civic initiatives affecting the community.",
     skills: [
       { name: "Policy Engagement", desc: "Working with local officials on county policies" },
       { name: "Civic Leadership", desc: "Representing youth perspectives in government" },
       { name: "Public Speaking", desc: "Presenting to county commissioners and public" }
     ],
     involvement: 100,
-    color: "primary"
+    color: "accent"
   },
   {
-    id: "2",
-    role: "Georgia 4-H Northwest District Board of Director",
-    date: "Feb 2025 – Present",
+    id: "4",
+    role: "Cobb County 4-H",
+    title: "President",
+    date: "2025 – Present",
     type: "Leadership",
-    description: "Planned and led youth leadership conferences and regional community service projects across Georgia. Coordinated with counties to expand outreach and participation.",
+    description: "Lead the county 4-H officer team, setting priorities for county-wide programming and representing Cobb County 4-H at district and state events.",
     skills: [
-      { name: "Event Coordination", desc: "Organizing district-wide conferences" },
-      { name: "Strategic Planning", desc: "Developing outreach strategies for 4-H" },
-      { name: "Leadership", desc: "Guiding peer teams and delegates" }
+      { name: "Team Leadership", desc: "Directing the county officer team" },
+      { name: "Program Development", desc: "Setting county-wide programming priorities" },
+      { name: "Representation", desc: "Representing Cobb County at district and state level" }
     ],
     involvement: 90,
     color: "secondary"
   },
   {
-    id: "3",
-    role: "\"Human Rights Across Borders\" – District Project",
-    date: "Mar 2025 – Present",
-    type: "Advocacy",
-    description: "Researched and presented on human rights issues across different regions, highlighting challenges faced by women, children, and minority populations at a state level.",
+    id: "5",
+    role: "Cobb County 4-H",
+    title: "Secretary (Prior Role)",
+    date: "2024 – 2025",
+    type: "Leadership",
+    description: "Maintained official meeting records and correspondence and supported officer communications before being elected President.",
     skills: [
-      { name: "Public Speaking", desc: "Delivering award-winning presentations" },
-      { name: "Research", desc: "Analyzing international human rights data" },
-      { name: "Advocacy", desc: "Raising awareness for minority populations" },
-      { name: "Global Awareness", desc: "Understanding international geopolitical contexts" }
+      { name: "Record Keeping", desc: "Maintaining official meeting minutes" },
+      { name: "Officer Communications", desc: "Supporting team correspondence" },
+      { name: "Organizational Skills", desc: "Managing documentation and scheduling" }
+    ],
+    involvement: 80,
+    color: "primary"
+  },
+  {
+    id: "6",
+    role: "Hindu YUVA – Wheeler High School Chapter",
+    title: "Founder",
+    date: "2024 – Present",
+    type: "Community",
+    description: "Established a new school chapter from the ground up to promote service, leadership, and cultural awareness among students.",
+    skills: [
+      { name: "Entrepreneurship", desc: "Building an organization from scratch" },
+      { name: "Cultural Programming", desc: "Designing culturally aware service activities" },
+      { name: "Community Building", desc: "Recruiting members and fostering inclusivity" }
+    ],
+    involvement: 85,
+    color: "accent"
+  },
+  {
+    id: "7",
+    role: "Adopt-A-Mile",
+    title: "Chapter Leader",
+    date: "2024 – Present",
+    type: "Community",
+    description: "Organize and lead recurring environmental cleanup events along an adopted roadway, coordinating volunteer turnout and safety logistics.",
+    skills: [
+      { name: "Volunteer Coordination", desc: "Recruiting and managing volunteers" },
+      { name: "Event Logistics", desc: "Planning safe and effective cleanup operations" },
+      { name: "Environmental Stewardship", desc: "Promoting community environmental responsibility" }
+    ],
+    involvement: 75,
+    color: "secondary"
+  },
+  {
+    id: "8",
+    role: "Hindu Swayamsevak Sangh (HSS)",
+    title: "Dwaj Pramukh",
+    date: "2023 – Present",
+    type: "Community",
+    description: "Serve in a youth leadership role mentoring and guiding younger members in group activities and cultural programming.",
+    skills: [
+      { name: "Youth Mentorship", desc: "Guiding younger members in HSS activities" },
+      { name: "Cultural Awareness", desc: "Facilitating cultural education and programming" },
+      { name: "Leadership", desc: "Holding a recognized officer role within the organization" }
+    ],
+    involvement: 75,
+    color: "primary"
+  },
+  {
+    id: "9",
+    role: "Georgia 4-H State Board Campaign",
+    title: "Statewide Candidate",
+    date: "2025",
+    type: "Government",
+    description: "Developing a statewide leadership platform and outreach strategy. Preparing to field impromptu policy and leadership questions live before a judged audience as part of the candidate forum process.",
+    skills: [
+      { name: "Platform Development", desc: "Building a statewide youth leadership agenda" },
+      { name: "Impromptu Speaking", desc: "Fielding live policy questions before judges" },
+      { name: "Strategic Outreach", desc: "Crafting messaging for a statewide audience" }
     ],
     involvement: 85,
     color: "accent"
   }
 ];
+
+const projects = [
+  {
+    id: "p1",
+    role: "Founder & Lead Strategist",
+    title: "Marietta Predictive Social Equity Lab",
+    type: "CivicTech",
+    description: "Conceived a CivicTech initiative proposing an AI-driven predictive analytics framework to help Cobb County shift social services from reactive to proactive — targeting housing instability, food insecurity, and mental health access. Outlined resource-allocation optimization and cost-benefit models drawing on Industrial Engineering and Finance principles.",
+    skills: [
+      { name: "AI / Predictive Analytics", desc: "Designing ML-based social equity models" },
+      { name: "Policy Design", desc: "Proposing proactive service-delivery frameworks" },
+      { name: "Systems Thinking", desc: "Modeling resource allocation and cost-benefit analysis" },
+      { name: "CivicTech", desc: "Applying technology to local government challenges" }
+    ],
+    color: "primary"
+  },
+  {
+    id: "p2",
+    role: "Lead Researcher & Architect",
+    title: "Agency Engine",
+    type: "AI Research",
+    description: "Designed an original AI behavioral framework exploring how to counter over-reliance on generative AI through an 'Adversarial Partner' model that uses productive friction to reinforce human critical thinking. Researched human-AI interaction principles and outlined a supporting technical architecture.",
+    skills: [
+      { name: "AI Behavioral Research", desc: "Studying human-AI interaction dynamics" },
+      { name: "Framework Design", desc: "Architecting the Adversarial Partner model" },
+      { name: "Critical Thinking", desc: "Investigating cognitive effects of AI reliance" }
+    ],
+    color: "secondary"
+  },
+  {
+    id: "p3",
+    role: "Researcher & Presenter",
+    title: "Human Rights Across Different Regions",
+    type: "4-H District Project",
+    description: "Conducted independent research on global human rights issues — focusing on challenges faced by women, children, and minority populations — and delivered a competitive presentation before judges, winning 1st Place at the NW District level.",
+    skills: [
+      { name: "Independent Research", desc: "Analyzing international human rights data" },
+      { name: "Public Speaking", desc: "Award-winning competitive presentation" },
+      { name: "Global Awareness", desc: "Understanding geopolitical human rights contexts" }
+    ],
+    color: "accent"
+  },
+  {
+    id: "p4",
+    role: "Lead Researcher",
+    title: "Science Fair: Hand Dryers vs. Paper Towels",
+    type: "STEM Research",
+    description: "Designed and conducted an original experiment using Glo Germ and UV analysis to investigate the spread of germs from different hand-drying methods. Developed the hypothesis, experimental design, data collection, and analysis independently.",
+    skills: [
+      { name: "Experimental Design", desc: "Designing a controlled scientific experiment" },
+      { name: "Data Analysis", desc: "Interpreting UV-based germ spread results" },
+      { name: "Scientific Writing", desc: "Documenting methodology and findings" }
+    ],
+    color: "primary"
+  },
+  {
+    id: "p5",
+    role: "State & National Competitor",
+    title: "Georgia 4-H Consumer Judging",
+    type: "Competition",
+    description: "Won the Georgia State Championship in consumer judging, qualifying for Nationals. Then won the National FCS Consumer Judging Team Championship — evaluating consumer products and defending analytical reasoning before judges at both levels.",
+    skills: [
+      { name: "Consumer Analysis", desc: "Critically evaluating products and services" },
+      { name: "Rational Decision-Making", desc: "Defending judgments before expert panels" },
+      { name: "Team Collaboration", desc: "Competing as part of a high-performing state team" }
+    ],
+    color: "secondary"
+  }
+];
+
+const tabCategories = ["all", "Leadership", "Government", "Community", "Projects"];
 
 export default function Experience() {
   return (
@@ -82,95 +246,132 @@ export default function Experience() {
       <div>
         <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">Experience</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Roles and projects focused on civic leadership, policy advocacy, and community engagement.
+          Roles and projects focused on civic leadership, government service, community building, and AI-driven research.
         </p>
       </div>
 
       <Tabs defaultValue="all" className="w-full">
         <TabsList className="mb-8 bg-white/5 border border-white/10 rounded-xl p-1 flex flex-wrap h-auto">
           <TabsTrigger value="all" className="rounded-lg flex-1">All Roles</TabsTrigger>
-          <TabsTrigger value="Government" className="rounded-lg flex-1">Government</TabsTrigger>
           <TabsTrigger value="Leadership" className="rounded-lg flex-1">Leadership</TabsTrigger>
-          <TabsTrigger value="Advocacy" className="rounded-lg flex-1">Advocacy</TabsTrigger>
+          <TabsTrigger value="Government" className="rounded-lg flex-1">Government</TabsTrigger>
+          <TabsTrigger value="Community" className="rounded-lg flex-1">Community</TabsTrigger>
+          <TabsTrigger value="Projects" className="rounded-lg flex-1">Projects</TabsTrigger>
         </TabsList>
 
-        {["all", "Government", "Leadership", "Advocacy"].map(tab => (
+        {tabCategories.map(tab => (
           <TabsContent key={tab} value={tab} className="mt-0">
-            <div className="flex flex-col lg:flex-row gap-10">
-              {/* Visual Timeline (Hidden on mobile) */}
-              <div className="hidden lg:block w-8 border-r-2 border-white/10 relative mt-6 shrink-0">
-                {experiences
-                  .filter(exp => tab === "all" || exp.type === tab)
-                  .map((exp, i) => (
-                  <div 
-                    key={exp.id} 
-                    className={`absolute w-4 h-4 rounded-full -right-[9px] border-4 border-background shadow-[0_0_15px_rgba(var(--${exp.color}),0.5)] bg-${exp.color}`}
-                    style={{ top: `${(i * 180) + 40}px` }}
-                  />
+            {tab === "Projects" ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {projects.map((project) => (
+                  <Card key={project.id} className="glass-card border-white/10 overflow-hidden">
+                    <CardHeader className="pb-3">
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <Badge variant="outline" className="bg-white/5 border-white/10 text-xs">{project.type}</Badge>
+                      </div>
+                      <CardTitle className="text-xl leading-tight text-white">{project.title}</CardTitle>
+                      <p className={`text-sm font-medium text-${project.color}`}>{project.role}</p>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+                      <Separator className="bg-white/10" />
+                      <div className="space-y-2">
+                        <h4 className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Applied Skills</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.skills.map((skill, idx) => (
+                            <Tooltip key={idx}>
+                              <TooltipTrigger asChild>
+                                <Badge className="bg-black/40 hover:bg-white/10 text-white/80 border border-white/10 cursor-help transition-colors">
+                                  {skill.name}
+                                </Badge>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{skill.desc}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
-
-              {/* Accordion List */}
-              <div className="flex-1 w-full">
-                <Accordion type="single" collapsible className="w-full space-y-4" defaultValue={experiences[0].id}>
+            ) : (
+              <div className="flex flex-col lg:flex-row gap-10">
+                <div className="hidden lg:block w-8 border-r-2 border-white/10 relative mt-6 shrink-0">
                   {experiences
                     .filter(exp => tab === "all" || exp.type === tab)
-                    .map((exp) => (
-                    <AccordionItem key={exp.id} value={exp.id} className="glass-card border-white/10 rounded-2xl overflow-hidden border-b-0 px-2">
-                      <AccordionTrigger className="hover:no-underline px-4 py-6">
-                        <div className="flex flex-col md:flex-row md:items-center text-left gap-2 w-full pr-4">
-                          <div className="flex-1">
-                            <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
-                            <p className={`text-sm text-${exp.color} font-medium`}>{exp.date}</p>
-                          </div>
-                          <Badge variant="outline" className="w-fit bg-white/5 border-white/10">{exp.type}</Badge>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-4 pb-6 pt-0 text-muted-foreground">
-                        <Card className="bg-white/5 border-white/5 shadow-inner">
-                          <CardHeader className="pb-3">
-                            <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">Overview</CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-6 pb-4">
-                            <p className="text-base text-white/90 leading-relaxed">
-                              {exp.description}
-                            </p>
-                            
-                            <div className="space-y-2">
-                              <div className="flex justify-between text-xs font-medium text-muted-foreground">
-                                <span>Involvement Level</span>
-                                <span>{exp.involvement}%</span>
-                              </div>
-                              <Progress value={exp.involvement} className={`h-2 bg-white/10 [&>div]:bg-${exp.color}`} />
-                            </div>
-                            
-                            <Separator className="bg-white/10" />
-                            
-                            <div className="space-y-3">
-                              <h4 className="text-sm font-medium text-white">Applied Skills</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {exp.skills.map((skill, idx) => (
-                                  <Tooltip key={idx}>
-                                    <TooltipTrigger asChild>
-                                      <Badge className="bg-black/40 hover:bg-white/10 text-white/80 border border-white/10 cursor-help transition-colors">
-                                        {skill.name}
-                                      </Badge>
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <p>{skill.desc}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                ))}
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </AccordionContent>
-                    </AccordionItem>
+                    .map((exp, i) => (
+                    <div 
+                      key={exp.id} 
+                      className={`absolute w-4 h-4 rounded-full -right-[9px] border-4 border-background bg-${exp.color}`}
+                      style={{ top: `${(i * 180) + 40}px` }}
+                    />
                   ))}
-                </Accordion>
+                </div>
+
+                <div className="flex-1 w-full">
+                  <Accordion type="single" collapsible className="w-full space-y-4" defaultValue={experiences[0].id}>
+                    {experiences
+                      .filter(exp => tab === "all" || exp.type === tab)
+                      .map((exp) => (
+                      <AccordionItem key={exp.id} value={exp.id} className="glass-card border-white/10 rounded-2xl overflow-hidden border-b-0 px-2">
+                        <AccordionTrigger className="hover:no-underline px-4 py-6">
+                          <div className="flex flex-col md:flex-row md:items-center text-left gap-2 w-full pr-4">
+                            <div className="flex-1">
+                              <h3 className="text-xl font-bold text-white mb-0.5">{exp.role}</h3>
+                              <p className={`text-sm font-semibold text-${exp.color} mb-1`}>{exp.title}</p>
+                              <p className="text-xs text-muted-foreground">{exp.date}</p>
+                            </div>
+                            <Badge variant="outline" className="w-fit bg-white/5 border-white/10">{exp.type}</Badge>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-4 pb-6 pt-0 text-muted-foreground">
+                          <Card className="bg-white/5 border-white/5 shadow-inner">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">Overview</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-6 pb-4">
+                              <p className="text-base text-white/90 leading-relaxed">
+                                {exp.description}
+                              </p>
+                              
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-xs font-medium text-muted-foreground">
+                                  <span>Involvement Level</span>
+                                  <span>{exp.involvement}%</span>
+                                </div>
+                                <Progress value={exp.involvement} className={`h-2 bg-white/10 [&>div]:bg-${exp.color}`} />
+                              </div>
+                              
+                              <Separator className="bg-white/10" />
+                              
+                              <div className="space-y-3">
+                                <h4 className="text-sm font-medium text-white">Applied Skills</h4>
+                                <div className="flex flex-wrap gap-2">
+                                  {exp.skills.map((skill, idx) => (
+                                    <Tooltip key={idx}>
+                                      <TooltipTrigger asChild>
+                                        <Badge className="bg-black/40 hover:bg-white/10 text-white/80 border border-white/10 cursor-help transition-colors">
+                                          {skill.name}
+                                        </Badge>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>{skill.desc}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  ))}
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
               </div>
-            </div>
+            )}
           </TabsContent>
         ))}
       </Tabs>

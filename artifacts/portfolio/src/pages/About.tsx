@@ -37,7 +37,7 @@ export default function About() {
       <div>
         <h1 className="text-4xl font-display font-bold uppercase tracking-tight mb-2 text-white text-glow">About Me</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          A passionate and highly motivated high school student focusing on civic engagement, human rights advocacy, and strategic youth leadership.
+          A motivated honors student and youth leader with extensive experience in public speaking, civic engagement, AI-powered research, and organizational leadership.
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export default function About() {
                   <Badge variant="secondary" className="cursor-help">Civic Leader</Badge>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Engaged in local government initiatives</p>
+                  <p>Engaged in local & state government initiatives</p>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -66,6 +66,22 @@ export default function About() {
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>State & District level award winner</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge variant="secondary" className="cursor-help">Researcher</Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>AI-driven civic tech and social equity research</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge variant="secondary" className="cursor-help">Entrepreneur</Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Founded Hindu YUVA chapter and civic tech initiatives</p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -84,22 +100,34 @@ export default function About() {
               <div className="glass-card p-6 md:p-8 rounded-2xl">
                 <h3 className="text-2xl font-display font-semibold mb-4">My Story</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  I am a passionate and highly motivated high school student seeking to apply my interests and background knowledge to opportunities in the social studies field. My focus lies at the intersection of civic engagement, human rights advocacy, and strategic youth leadership.
+                  I am a motivated honors student and youth leader with extensive experience in public speaking, civic engagement, research, and organizational leadership. Passionate about public policy, social studies, community service, and empowering others through servant leadership — I operate at the intersection of government, technology, and community.
                 </p>
                 <Separator className="bg-white/10 my-6" />
-                <h4 className="text-lg font-semibold mb-4 text-white">Key Facts</h4>
+                <h4 className="text-lg font-semibold mb-4 text-white">Key Roles</h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>Serving as Cobb County Youth Commissioner</span>
+                    <span>Wheeler Magnet Student Advisory Board (SAB), Vice President</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                    <span>Georgia 4-H Northwest District Board of Director</span>
+                    <span>Cobb County 4-H, President</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    <span>Award-winning public speaker on human rights</span>
+                    <span>Georgia 4-H Northwest District Board of Directors, District Officer</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <span>Founder, Hindu YUVA – Wheeler High School Chapter</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                    <span>Cobb County Youth Commission, Member</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span>Founder, Marietta Predictive Social Equity Lab (CivicTech AI Initiative)</span>
                   </li>
                 </ul>
               </div>
@@ -120,7 +148,7 @@ export default function About() {
                       <HoverCard>
                         <HoverCardTrigger asChild>
                           <div className="flex items-center gap-2 cursor-help">
-                            <span className="text-3xl font-display font-bold text-white">4.3</span>
+                            <span className="text-3xl font-display font-bold text-white">4.4</span>
                             <Info className="w-4 h-4 text-muted-foreground" />
                           </div>
                         </HoverCardTrigger>
@@ -135,7 +163,7 @@ export default function About() {
                     <div className="bg-white/5 rounded-xl p-4 border border-white/5">
                       <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Honors</p>
                       <p className="text-sm font-medium text-white mb-1">Academic Letter</p>
-                      <p className="text-xs text-muted-foreground">Recognition in Advanced Courses</p>
+                      <p className="text-xs text-muted-foreground">Recognition in Honors & AP Courses</p>
                     </div>
                   </div>
 
@@ -160,15 +188,17 @@ export default function About() {
                     <h4 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Core Interests</h4>
                     <div className="flex flex-col gap-2">
                       <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">International Relations</div>
-                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Policy Debate</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Policy Debate & Speech</div>
                       <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Community Organizing</div>
                       <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Youth Advocacy</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">Swimming & Water Polo</div>
+                      <div className="bg-white/5 px-4 py-2 rounded-lg border border-white/5 text-sm">CivicTech & AI Research</div>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <h4 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">Future Goals</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      To pursue a career in public policy or international law, leveraging research and advocacy to address systemic human rights issues on a broader scale.
+                      To pursue a career in public policy or international law, leveraging AI-driven research and civic advocacy to address systemic equity issues — from local government all the way to the national stage.
                     </p>
                   </div>
                 </div>

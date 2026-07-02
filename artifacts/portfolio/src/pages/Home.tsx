@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@assets/IMG_6720_1780111869102.jpeg";
 
-// Hero Background Blobs
 const HeroBlobs = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -81,7 +80,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6 text-sm text-muted-foreground shadow-lg"
         >
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-          Civic Leader & Public Speaker
+          Civic Leader · Researcher · Entrepreneur
         </motion.div>
 
         <motion.h1 
@@ -100,8 +99,8 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mt-4 font-light tracking-wide leading-relaxed"
         >
-          Precise. Data-forward. Deeply intentional. 
-          Applying interests and background knowledge to opportunities in the social studies field.
+          Motivated honors student and youth leader driving civic change through public policy, 
+          AI-powered research, and servant leadership across Georgia and beyond.
         </motion.p>
 
         <motion.div 
@@ -111,15 +110,15 @@ export default function Home() {
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl mt-12 mb-12"
         >
           <Card className="glass-card flex flex-col items-center justify-center p-6 text-center border-white/5 hover:border-primary/30 transition-colors">
-            <span className="text-4xl font-display font-bold text-white mb-2">4.3</span>
+            <span className="text-4xl font-display font-bold text-white mb-2">4.4</span>
             <span className="text-sm text-muted-foreground uppercase tracking-wider">GPA</span>
           </Card>
           <Card className="glass-card flex flex-col items-center justify-center p-6 text-center border-white/5 hover:border-accent/30 transition-colors">
-            <span className="text-4xl font-display font-bold text-white mb-2">3</span>
+            <span className="text-4xl font-display font-bold text-white mb-2">10+</span>
             <span className="text-sm text-muted-foreground uppercase tracking-wider">Major Roles</span>
           </Card>
           <Card className="glass-card flex flex-col items-center justify-center p-6 text-center border-white/5 hover:border-secondary/30 transition-colors">
-            <span className="text-4xl font-display font-bold text-white mb-2">5</span>
+            <span className="text-4xl font-display font-bold text-white mb-2">7</span>
             <span className="text-sm text-muted-foreground uppercase tracking-wider">Awards</span>
           </Card>
         </motion.div>
